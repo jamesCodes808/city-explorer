@@ -37,7 +37,7 @@ class App extends React.Component {
     e.preventDefault();
     try {
       let request = {
-        url: `https://us1.locationiq.com/v1/search?key=${1231234}&q=${this.state.searchQuery}&format=json`,
+        url: `https://us1.locationiq.com/v1/search?key=${ACCESS_TOKEN}&q=${this.state.searchQuery}&format=json`,
         method: 'GET'
       }
       let response = await axios(request);
