@@ -56,6 +56,7 @@ class App extends React.Component {
       console.log(e);
       this.setState({ error: e });
     }
+
   };
 
   render() {
@@ -72,33 +73,31 @@ class App extends React.Component {
               handleInput={this.handleInput}
               handleSearch={this.handleSearch} />
           </header>
-          <main>
-            <Container fluid="lg">
+          <Container fluid="lg">
+            <main>
               <Row className="justify-content-sm-center">
-                <section>
-                  {this.state.searchResults.map(city => (
-                    <Col sm={12} md={6} lg={4} xl={4}>
-                      <Card class="card-container">
-                        <Card.Img
-                          variant="top"
-                          src={city.icon}
-                          style={{ width: 200, height: 200, }}
-                          class="card-image"
-                        />
-                        <Card.Body>
-                          <Card.Title>{city.display_name}</Card.Title>
-                          <Card.Text>
-                            Lattitude: {city.lat} <br></br>
-                            Longitude: {city.lon}
-                          </Card.Text>
-                        </Card.Body>
-                      </Card>
-                    </Col>
-                  ))}
-                </section>
+                {this.state.searchResults.map(city => (
+                  <Col sm={12} md={6} lg={4} xl={4}>
+                    <Card className="card-container">
+                      <Card.Img
+                        variant="top"
+                        src={`https://maps.locationiq.com/v3/staticmap?key=${ACCESS_TOKEN}&center=${city.lat},${city.lon}&zoom=13&size=200x200&markers=icon:tiny-red-cutout|${city.lat},${city.lon}`}
+                        style={{ width: 200, height: 200, }}
+                        className="card-image"
+                      />
+                      <Card.Body>
+                        <Card.Title>{city.display_name}</Card.Title>
+                        <Card.Text>
+                          Lattitude: {city.lat} <br></br>
+                          Longitude: {city.lon}
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                ))}
               </Row>
-            </Container>
-          </main>
+            </main>
+          </Container>
         </div>
       </ThemeProvider>
     );
