@@ -55,7 +55,7 @@ class App extends React.Component {
   };
 
   render() {
-    let condition = this.state.searchQuery && this.state.searchResults.length;
+
     let errorCondition = this.state.error;
     console.log(this.state)
     return (
