@@ -3,12 +3,12 @@ import React from 'react';
 import CitySearchForm from './CitySearchForm';
 import ErrorMessage from './ErrorMessage';
 import axios from 'axios';
-import Card from 'react-bootstrap/Card';
 import ThemeProvider from 'react-bootstrap/ThemeProvider';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
+import Weather from './Weather';
+import Location from './Location';
 
 const ACCESS_TOKEN = process.env.REACT_APP_LOCATIONIQKEY;
 
@@ -21,7 +21,11 @@ class App extends React.Component {
     this.state = {
       searchQuery: '',
       searchResults: [],
-      error: null
+      error: null,
+      modalShow: false,
+      setModalShow: false,
+      selectedLocation: {},
+      weatherInfo: []
     }
   }
 
@@ -32,6 +36,12 @@ class App extends React.Component {
       searchQuery: value,
     })
   };
+
+  setSelectedLocation = (locationObject) => {
+    this.setState({
+      selectedLocation: locationObject,
+    })
+  }
 
   handleSearch = async (e) => {
     e.preventDefault();
@@ -54,53 +64,77 @@ class App extends React.Component {
 
   };
 
+  getWeatherInfoButton = async (e) => {
+
+    try {
+      let request = {
+        url: `http://localhost:3001/weather?city_name=${this.state.searchQuery}&lon=${this.state.selectedLocation.lon}&lat=${this.state.selectedLocation.lat}`,
+        method: 'GET'
+      }
+      let response = await axios(request);
+
+      console.log(response)
+
+      this.setState({
+        weatherInfo: response.data,
+        modalShow: true,
+        setModalShow: true
+      })
+
+    } catch (e) {
+      this.setState({ error: e })
+    }
+
+  }
+
   render() {
 
     let errorCondition = this.state.error;
     console.log(this.state)
     return (
-      <ThemeProvider
-        breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
-        minBreakpoint="xxs"
-      >
-        <div className="App" >
-          <header className="App-header">
-            <CitySearchForm
-              handleInput={this.handleInput}
-              handleSearch={this.handleSearch} />
-          </header>
-          <Container fluid="lg">
-            <main>
-              <Row className="justify-content-sm-center">
-                {errorCondition ?
-                  <ErrorMessage
-                    errorCode={this.state.error.code}
-                    errorMessage={this.state.error.message} />
-                  :
-                  this.state.searchResults.map(city => (
-                    <Col sm={12} md={6} lg={4} xl={4}>
-                      <Card className="card-container">
-                        <Card.Img
-                          variant="top"
-                          src={`https://maps.locationiq.com/v3/staticmap?key=${ACCESS_TOKEN}&center=${city.lat},${city.lon}&zoom=13&size=200x200&markers=icon:tiny-red-cutout|${city.lat},${city.lon}`}
-                          style={{ width: 200, height: 200, }}
-                          className="card-image"
+      <>
+        <ThemeProvider
+          breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
+          minBreakpoint="xxs"
+        >
+          <div className="App" >
+            <header className="App-header">
+              <CitySearchForm
+                handleInput={this.handleInput}
+                handleSearch={this.handleSearch} />
+            </header>
+            <Container fluid="lg">
+              <main>
+                <Row className="justify-content-sm-center">
+                  {errorCondition ?
+                    <ErrorMessage
+                      errorCode={this.state.error.code}
+                      errorMessage={this.state.error.message} />
+                    :
+                    this.state.searchResults.map(city => (
+                      <Col sm={12} md={6} lg={4} xl={4}>
+                        <Location
+                          cityLat={city.lat}
+                          cityLon={city.lon}
+                          cityName={city.display_name}
+                          cityObject={city}
+                          setSelectedLocation={this.setSelectedLocation}
+                          set
+                          getWeatherInfoButton={this.getWeatherInfoButton}
                         />
-                        <Card.Body>
-                          <Card.Title>{city.display_name}</Card.Title>
-                          <Card.Text>
-                            Lattitude: {city.lat} <br></br>
-                            Longitude: {city.lon}
-                          </Card.Text>
-                        </Card.Body>
-                      </Card>
-                    </Col>
-                  ))}
-              </Row>
-            </main>
-          </Container>
-        </div>
-      </ThemeProvider>
+                      </Col>
+                    ))}
+                </Row>
+              </main>
+            </Container>
+          </div>
+        </ThemeProvider>
+        <Weather
+          selectedLocation={this.state.selectedLocation}
+          show={this.state.modalShow}
+          weatherInfo={this.state.weatherInfo}
+          onHide={() => this.setState({ modalShow: false, setModalShow: false })} />
+      </>
     );
   }
 }
