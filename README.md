@@ -36,7 +36,15 @@ Required APIs:
 
 ## Change Log
 
-ver 1.0.0 - Adds search function, displays static map location and information, better styles!
+02-20-2023 Start: 1355, Finish: 1440, Time: 45min - Set up React environment & API Keys
+
+02-20-2023 Start: 1450, Finish: 1636, Time: 1 hour 46 min - Adds search functionality, to render information of location
+
+02-20-2023 Start: 1650, Finish: 1710, Time: 20min - Adds static maps to render with location result from search
+
+02-20-2023 Start: 1730, Finish: 1755, Time: 25 min - Adds Error rendering if search or API call is bad.
+
+02-21-2023 Start: 1910 , Finish: 2210, Time: 3 hours - Connects city-explorer to city-explorer-api, adds Weather component to display when user clicks on location card
 
 
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
