@@ -24,8 +24,13 @@ Required APIs:
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
 
 ## Architecture
-ver 1.0.0<br>
-<img src="assets/wrrc1.0.png" width="400" height="300">
+>ver 1.0.0
+><a href="https://projects.invisionapp.com/freehand/document/5EqauWXKO"> <img src="assets/wrrc1.png" width="400" height="300"> </a>
+><br>
+>
+>
+>
+
 
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
 
