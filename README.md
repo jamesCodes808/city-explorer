@@ -28,7 +28,8 @@ Required APIs:
 ><a href="https://projects.invisionapp.com/freehand/document/5EqauWXKO"> <img src="assets/wrrc1.png" width="400" height="300"> </a>
 ><br>
 >
->
+>ver 1.0.1<br>
+><img src="./assets/wrrc3.png" width="400" height="300"> </a>
 >
 
 
@@ -46,6 +47,11 @@ Required APIs:
 
 02-21-2023 Start: 1910 , Finish: 2210, Time: 3 hours - Connects city-explorer to city-explorer-api, adds Weather component to display when user clicks on location card
 
+02-22-2023 Start 1620 - Uses Weatherbits API To retrieve and display weather data Finish: 1750, Time: 1 hour 30 min
+
+02-22-2023 Start 1910 - Created Movie component to display movie data that includes the city name of the location clicked. Finish: 2200, Time: 1 hour 30 min
+
+02-22-2023 Start 2240 - Deployed to netlify, can navigate without running local server, now that server is deployed to the cloud Finish: 2300, Time: 20 min
 
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
 
@@ -53,7 +59,7 @@ Required APIs:
 
 ## Credit and Collaborations
 
->[]()
+>[Sheldon Pierce for Helping with the WRRC Diagram](https://github.com/Sheldon-Pierce)
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
 
