@@ -9,9 +9,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Weather from './Weather';
 import Location from './Location';
+import Movies from './Movies';
 
 const ACCESS_TOKEN = process.env.REACT_APP_LOCATIONIQKEY;
-
 
 class App extends React.Component {
 
@@ -22,10 +22,13 @@ class App extends React.Component {
       searchQuery: '',
       searchResults: [],
       error: null,
-      modalShow: false,
-      setModalShow: false,
       selectedLocation: {},
-      weatherInfo: []
+      weatherInfo: [],
+      weatherModalShow: false,
+      setWeatherModalShow: false,
+      listOfMovies: [],
+      movieModalShow: false,
+      setMovieModalShow: false
     }
   }
 
@@ -64,28 +67,62 @@ class App extends React.Component {
 
   };
 
+
   getWeatherInfoButton = async (e) => {
 
+    // let cityName = this.state.selectedLocation.display_name.slice(0, this.state.selectedLocation.display_name.indexOf(','))
+
+    // let selectedCity = {};
+
     try {
-      let request = {
-        url: `http://localhost:3001/weather?city_name=${this.state.searchQuery}&lon=${this.state.selectedLocation.lon}&lat=${this.state.selectedLocation.lat}`,
-        method: 'GET'
+      // selectedCity = this.state.searchResults.filter(location => {
+      //   location.lat === this.state.selectedLocation.lat && location.lon === this.state.selectedLocation.lon
+      // })
+
+      for (let location of this.state.searchResults) {
+        if (location.lat === this.state.selectedLocation.lat && location.lon === this.state.selectedLocation.lon) {
+
+          let request = {
+            url: `https://city-explorer-api-bzgb.onrender.com/weather?city_name=${location.display_name.slice(0, location.display_name.indexOf(','))}&lon=${location.lon}&lat=${location.lat}`,
+            method: 'GET'
+          }
+          let response = await axios(request);
+
+          console.log(response)
+
+          this.setState({
+            weatherInfo: response.data,
+            weatherModalShow: true,
+            setWeatherModalShow: true
+          })
+        } else {
+          console.log('error')
+        }
       }
-      let response = await axios(request);
 
-      console.log(response)
-
-      this.setState({
-        weatherInfo: response.data,
-        modalShow: true,
-        setModalShow: true
-      })
 
     } catch (e) {
       this.setState({ error: e })
     }
+  };
 
-  }
+
+
+  getMovieInfoButton = async (e) => {
+
+    axios.get(`https://city-explorer-api-bzgb.onrender.com/movie?query=${this.state.searchQuery}`)
+      .then(response => {
+        this.setState({
+          listOfMovies: response.data,
+          movieModalShow: true,
+          setMovieModalShow: true
+        })
+      })
+      .catch(err => {
+        this.setState({ error: err })
+      })
+
+  };
 
   render() {
 
@@ -121,6 +158,7 @@ class App extends React.Component {
                           setSelectedLocation={this.setSelectedLocation}
                           set
                           getWeatherInfoButton={this.getWeatherInfoButton}
+                          getMovieInfoButton={this.getMovieInfoButton}
                         />
                       </Col>
                     ))}
@@ -131,9 +169,16 @@ class App extends React.Component {
         </ThemeProvider>
         <Weather
           selectedLocation={this.state.selectedLocation}
-          show={this.state.modalShow}
+          show={this.state.weatherModalShow}
           weatherInfo={this.state.weatherInfo}
-          onHide={() => this.setState({ modalShow: false, setModalShow: false })} />
+          onHide={() => this.setState({ weatherModalShow: false, setWeatherModalShow: false })} />
+        <Movies
+          listOfMovies={this.state.listOfMovies}
+          show={this.state.movieModalShow}
+          onHide={() => this.setState({
+            movieModalShow: false,
+            setMovieModalShow: false
+          })} />
       </>
     );
   }

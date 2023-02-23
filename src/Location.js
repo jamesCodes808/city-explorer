@@ -6,13 +6,14 @@ const ACCESS_TOKEN = process.env.REACT_APP_LOCATIONIQKEY;
 
 class Location extends React.Component {
 
-    handleBtnClick = () => {
+    handleWeatherBtnClick = () => {
         this.props.setSelectedLocation(this.props.cityObject)
+        this.props.getWeatherInfoButton();
+    }
 
-        console.log(this.props)
-
-        this.props.getWeatherInfoButton()
-
+    handleMovieBtnClick = () => {
+        this.props.setSelectedLocation(this.props.cityObject)
+        this.props.getMovieInfoButton();
     }
 
     render() {
@@ -32,7 +33,11 @@ class Location extends React.Component {
                             Longitude: {this.props.cityLon} <br></br>
                             <Button
                                 variant="primary"
-                                onClick={this.handleBtnClick}> Weather
+                                onClick={this.handleWeatherBtnClick}> Weather
+                            </Button>
+                            <Button
+                                variant="secondary"
+                                onClick={this.handleMovieBtnClick}> Movies
                             </Button>
 
                         </Card.Text>
