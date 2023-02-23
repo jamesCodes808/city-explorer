@@ -83,7 +83,7 @@ class App extends React.Component {
         if (location.lat === this.state.selectedLocation.lat && location.lon === this.state.selectedLocation.lon) {
 
           let request = {
-            url: `http://localhost:3001/weather?city_name=${location.display_name.slice(0, location.display_name.indexOf(','))}&lon=${location.lon}&lat=${location.lat}`,
+            url: `https://city-explorer-api-bzgb.onrender.com/weather?city_name=${location.display_name.slice(0, location.display_name.indexOf(','))}&lon=${location.lon}&lat=${location.lat}`,
             method: 'GET'
           }
           let response = await axios(request);
@@ -110,7 +110,7 @@ class App extends React.Component {
 
   getMovieInfoButton = async (e) => {
 
-    axios.get(`http://localhost:3001/movie?query=${this.state.searchQuery}`)
+    axios.get(`https://city-explorer-api-bzgb.onrender.com/movie?query=${this.state.searchQuery}`)
       .then(response => {
         this.setState({
           listOfMovies: response.data,
