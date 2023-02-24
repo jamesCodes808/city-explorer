@@ -7,13 +7,11 @@ const ACCESS_TOKEN = process.env.REACT_APP_LOCATIONIQKEY;
 class Location extends React.Component {
 
     handleWeatherBtnClick = () => {
-        this.props.setSelectedLocation(this.props.cityObject)
-        this.props.getWeatherInfoButton();
+        this.props.setSelectedLocationForWeatherButton(this.props.cityObject)
     }
 
     handleMovieBtnClick = () => {
-        this.props.setSelectedLocation(this.props.cityObject)
-        this.props.getMovieInfoButton();
+        this.props.setSelectedLocationForMovieButton(this.props.cityObject)
     }
 
     render() {
