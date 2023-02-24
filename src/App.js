@@ -30,7 +30,7 @@ class App extends React.Component {
       movieModalShow: false,
       setMovieModalShow: false
     }
-  }
+  };
 
   handleInput = async (e) => {
     let value = e.target.value;
@@ -40,11 +40,17 @@ class App extends React.Component {
     })
   };
 
-  setSelectedLocation = (locationObject) => {
+  setSelectedLocationForWeatherButton = (locationObject) => {
     this.setState({
-      selectedLocation: locationObject,
-    })
-  }
+      selectedLocation: locationObject
+    }, this.getWeatherInfoButton)
+  };
+
+  setSelectedLocationForMovieButton = (locationObject) => {
+    this.setState({
+      selectedLocation: locationObject
+    }, this.getMovieInfoButton)
+  };
 
   handleSearch = async (e) => {
     e.preventDefault();
@@ -64,53 +70,39 @@ class App extends React.Component {
       console.log(e);
       this.setState({ error: e });
     }
-
   };
 
 
-  getWeatherInfoButton = async (e) => {
+  getWeatherInfoButton = async () => {
 
-    // let cityName = this.state.selectedLocation.display_name.slice(0, this.state.selectedLocation.display_name.indexOf(','))
-
-    // let selectedCity = {};
+    let cityName = this.state.selectedLocation.display_name.slice(0, this.state.selectedLocation.display_name.indexOf(','));
 
     try {
-      // selectedCity = this.state.searchResults.filter(location => {
-      //   location.lat === this.state.selectedLocation.lat && location.lon === this.state.selectedLocation.lon
-      // })
 
-      for (let location of this.state.searchResults) {
-        if (location.lat === this.state.selectedLocation.lat && location.lon === this.state.selectedLocation.lon) {
-
-          let request = {
-            url: `https://city-explorer-api-bzgb.onrender.com/weather?city_name=${location.display_name.slice(0, location.display_name.indexOf(','))}&lon=${location.lon}&lat=${location.lat}`,
-            method: 'GET'
-          }
-          let response = await axios(request);
-
-          console.log(response)
-
-          this.setState({
-            weatherInfo: response.data,
-            weatherModalShow: true,
-            setWeatherModalShow: true
-          })
-        } else {
-          console.log('error')
-        }
+      let request = {
+        url: `https://city-explorer-api-bzgb.onrender.com/weather?city_name=${cityName}&lon=${this.state.selectedLocation.lon}&lat=${this.state.selectedLocation.lat}`,
+        method: 'GET'
       }
+      let response = await axios(request);
 
+      console.log(response)
+
+      this.setState({
+        weatherInfo: response.data,
+        weatherModalShow: true,
+        setWeatherModalShow: true
+      })
 
     } catch (e) {
       this.setState({ error: e })
     }
   };
 
+  getMovieInfoButton = async () => {
 
+    let cityName = this.state.selectedLocation.display_name.slice(0, this.state.selectedLocation.display_name.indexOf(','));
 
-  getMovieInfoButton = async (e) => {
-
-    axios.get(`https://city-explorer-api-bzgb.onrender.com/movie?query=${this.state.searchQuery}`)
+    axios.get(`https://city-explorer-api-bzgb.onrender.com/movie?query=${cityName}`)
       .then(response => {
         this.setState({
           listOfMovies: response.data,
@@ -121,7 +113,6 @@ class App extends React.Component {
       .catch(err => {
         this.setState({ error: err })
       })
-
   };
 
   render() {
@@ -155,10 +146,8 @@ class App extends React.Component {
                           cityLon={city.lon}
                           cityName={city.display_name}
                           cityObject={city}
-                          setSelectedLocation={this.setSelectedLocation}
-                          set
-                          getWeatherInfoButton={this.getWeatherInfoButton}
-                          getMovieInfoButton={this.getMovieInfoButton}
+                          setSelectedLocationForWeatherButton={this.setSelectedLocationForWeatherButton}
+                          setSelectedLocationForMovieButton={this.setSelectedLocationForMovieButton}
                         />
                       </Col>
                     ))}
