@@ -77,6 +77,7 @@ class App extends React.Component {
 
     let cityName = this.state.selectedLocation.display_name.slice(0, this.state.selectedLocation.display_name.indexOf(','));
 
+
     try {
 
       let request = {
@@ -84,6 +85,7 @@ class App extends React.Component {
         method: 'GET'
       }
       let response = await axios(request);
+      console.log(cityName)
 
       console.log(response)
 
