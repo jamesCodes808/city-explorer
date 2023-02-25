@@ -11,10 +11,10 @@ class Movies extends React.Component {
                     {...this.props}
                     size="lg"
                     aria-labelledby="contained-modal-title-vcenter"
-                    center>
+                    >
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
-                            Movies
+                            <h3>Movies</h3>
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>

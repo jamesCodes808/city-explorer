@@ -15,7 +15,8 @@ class Weather extends React.Component {
                     center>
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
-                            <h3>{this.props.selectedLocation.city_name}</h3>
+                            <h3>{this.props.selectedLocation.display_name}</h3>
+                            <p>7 Day Forecast</p>
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>

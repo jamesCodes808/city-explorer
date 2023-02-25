@@ -1,20 +1,45 @@
 import React from 'react';
+import Carousel from 'react-bootstrap/Carousel'
 
 class Movies extends React.Component {
+
+    constructor(){
+        super()
+        this.state={
+            index: 0,
+            setIndex: 0
+        }
+    }
+
+    handleSelect = (selectedIdx, e) => {
+        e.preventDefault()
+        this.setState({
+            index: selectedIdx
+        })
+    }
 
     render() {
         return (
             <>
-                {this.props.listOfMovies.map(movie =>
-
-                    < section >
-                        <p>Title: {movie.title}</p> <br></br>
-                        <img src={movie.posterImgPath} alt={movie.title}></img>
-                        <p>Release Date: {movie.releaseDate}</p> <br></br>
-                        <p>Popularity: {movie.popularity}</p> <br></br>
-                        <p>Synopsis: {movie.overview}</p> <br></br>
-                    </section>
-                )}
+            <Carousel activeIndex={this.state.index} onSelect={this.handleSelect}>
+                {this.props.listOfMovies.map(movie => 
+                {
+               return <Carousel.Item key={movie.id}>
+                    <img 
+                    className="d-block w-100"
+                    src={movie.posterImgPath} 
+                    alt={movie.title} />
+                    
+               
+                    <h3>{movie.title}</h3>
+                    <p>{movie.overview}</p>
+                
+                </Carousel.Item>
+                
+                
+                }
+                )} 
+                </Carousel>
             </>
         )
     }
