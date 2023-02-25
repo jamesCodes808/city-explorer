@@ -28,7 +28,9 @@ class App extends React.Component {
       setWeatherModalShow: false,
       listOfMovies: [],
       movieModalShow: false,
-      setMovieModalShow: false
+      setMovieModalShow: false,
+      moviesRetrievedTime: '',
+      weatherRetrievedTime: '',
     }
   };
 
@@ -92,8 +94,11 @@ class App extends React.Component {
       this.setState({
         weatherInfo: response.data,
         weatherModalShow: true,
-        setWeatherModalShow: true
+        setWeatherModalShow: true,
+        weatherRetrievedTime: Date.now()
       })
+
+      console.log(`Weather Retrieved From API: ${this.state.weatherRetrievedTime}`)
 
     } catch (e) {
       this.setState({ error: e })
@@ -109,8 +114,12 @@ class App extends React.Component {
         this.setState({
           listOfMovies: response.data,
           movieModalShow: true,
-          setMovieModalShow: true
+          setMovieModalShow: true,
+          moviesRetrievedTime: Date.now()
         })
+
+        console.log(`Movies Retrieved From API: ${this.state.moviesRetrievedTime}`)
+
       })
       .catch(err => {
         this.setState({ error: err })
