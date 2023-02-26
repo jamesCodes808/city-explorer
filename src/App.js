@@ -11,6 +11,7 @@ import Weather from './Weather';
 import Location from './Location';
 import Movies from './Movies';
 
+
 const ACCESS_TOKEN = process.env.REACT_APP_LOCATIONIQKEY;
 
 class App extends React.Component {

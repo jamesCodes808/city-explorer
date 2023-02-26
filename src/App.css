@@ -38,6 +38,11 @@
   }
 }
 
+section, p, h3 {
+  text-align: center;
+  margin: 10px auto;
+}
+
 .card-container {
   margin: 20px;
 }
@@ -49,5 +54,5 @@
 }
 
 .weather-info {
-  margin-top: 20px;
+  margin-top: 20px auto;
 }

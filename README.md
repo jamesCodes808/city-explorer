@@ -14,8 +14,10 @@ This city explorer application is for searching up a city and receiving all the 
 ## Getting Started
 
 Required packages:
+- npm install react
 - npm install react-bootstrap bootstrap
 - npm install nodemon
+
 
 Required APIs:
 <br>
