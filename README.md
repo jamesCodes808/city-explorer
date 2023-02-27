@@ -62,6 +62,11 @@ Required APIs:
 ## Credit and Collaborations
 
 >[Sheldon Pierce for Helping with the WRRC Diagram](https://github.com/Sheldon-Pierce)
+>
+>[Responsive React Props](https://dev.to/justincy/4-patterns-for-responsive-props-in-react-39ak)
+>
+>[useMediaQuery and useBreakPoints inspired by https://usehooks.com/useMedia/](https://gist.github.com/gragland/ed8cac563f5df71d78f4a1fefa8c5633)
+
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
 

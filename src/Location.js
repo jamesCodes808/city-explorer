@@ -17,7 +17,7 @@ class Location extends React.Component {
     render() {
         return (
             <section>
-                <Card className="card-container">
+                <Card className="card-container bgColor">
                     <Card.Img
                         variant="top"
                         src={`https://maps.locationiq.com/v3/staticmap?key=${ACCESS_TOKEN}&center=${this.props.cityLat},${this.props.cityLon}&zoom=13&size=200x200&markers=icon:tiny-red-cutout|${this.props.cityLat},${this.props.cityLon}`}
