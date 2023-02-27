@@ -26,13 +26,12 @@ Required APIs:
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
 
 ## Architecture
->ver 1.0.0
+>ver 1.0.0<br>
 ><a href="https://projects.invisionapp.com/freehand/document/5EqauWXKO"> <img src="assets/wrrc1.png" width="400" height="300"> </a>
-><br>
->
 >ver 1.0.1<br>
 ><img src="./assets/wrrc3.png" width="400" height="300"> </a>
->
+>ver 1.02<br>
+><a href="https://projects.invisionapp.com/freehand/document/B65UXC3Ou"> <img src="./assets/wrrc4.png"> </a>
 
 
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
@@ -63,9 +62,7 @@ Required APIs:
 
 >[Sheldon Pierce for Helping with the WRRC Diagram](https://github.com/Sheldon-Pierce)
 >
->[Responsive React Props](https://dev.to/justincy/4-patterns-for-responsive-props-in-react-39ak)
->
->[useMediaQuery and useBreakPoints inspired by https://usehooks.com/useMedia/](https://gist.github.com/gragland/ed8cac563f5df71d78f4a1fefa8c5633)
+
 
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
