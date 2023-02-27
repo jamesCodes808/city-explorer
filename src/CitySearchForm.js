@@ -9,13 +9,13 @@ class CitySearchForm extends React.Component {
             <>
                 <Form>
                     <Form.Group className="mb-0" style={{ width: 400 }} controlId="formBasicText">
-                        <Form.Label>Search City</Form.Label>
+                        <Form.Label>City Explorer</Form.Label>
                         <Form.Control
                             type="text"
                             placeholder="Enter city name"
                             onChange={this.props.handleInput}
                         ></Form.Control>
-                        <Form.Text>Type in a city to see its location</Form.Text>
+                        <Form.Text>Provides location and fun facts</Form.Text>
                     </Form.Group>
                     <Button
                         variant="primary"

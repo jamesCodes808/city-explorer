@@ -10,16 +10,18 @@ class Weather extends React.Component {
             <>
                 <Modal
                     {...this.props}
-                    size="lg"
+                    size="xl"
                     aria-labelledby="contained-modal-title-vcenter"
-                    center>
+                    center
+                >
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
                             <h3>{this.props.selectedLocation.display_name}</h3>
                             <p>7 Day Forecast</p>
                         </Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>
+                    <Modal.Body
+                        className='modal-body-container'>
                         <WeatherDay
                             weatherInfo={this.props.weatherInfo} />
                     </Modal.Body>

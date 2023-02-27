@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #5C6B73;
 }
 
 .App-logo {
@@ -14,14 +15,15 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 40vh;
+  background-color: #253237;
+  min-height: 30vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  border-radius: 0px 0px 10px 10px;
 }
 
 .App-link {
@@ -38,13 +40,37 @@
   }
 }
 
-section, p, h3 {
+body {
+  background-color: #5C6B73;
+}
+
+section,
+p,
+h3 {
   text-align: center;
   margin: 10px auto;
 }
 
-.card-container {
+.main-content-container {
+  min-height: calc(100vh - 34px);
+}
+
+.btn {
+  margin: 10px;
+}
+
+.row section.weather-section {
+  width: auto;
+}
+
+.weather-card-col {
+  margin: 0 auto;
+}
+
+
+.card-container.bgColor {
   margin: 20px;
+  background-color: #9DB4C0;
 }
 
 .card-image {
@@ -53,6 +79,51 @@ section, p, h3 {
   text-align: center;
 }
 
+.modal-header {
+  text-align: center;
+  margin: 0 auto;
+  
+}
+
+.modal-body-container {
+  background-color: #E0FBFC;
+}
+
 .weather-info {
   margin-top: 20px auto;
+}
+
+.weather-img {
+  margin: 0 auto;
+}
+
+.carousel-item .movie-description {
+  margin: 30px auto 50px;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  height: 100px;
+  width: 100px;
+  outline: black;
+  filter: invert(100%);
+  background-size: 100%, 100%;
+  background-image: none;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+.carousel-indicators {
+  filter: invert(100%);
+}
+
+.footer-container {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  color: white;
+  padding: 20px;
+  font-size: small;
+  text-align: center;
+  background-color: #253237;
 }
